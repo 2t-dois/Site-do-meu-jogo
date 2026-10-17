@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10131c">
+  <title>TtritoWorld — Sua próxima aventura</title>
+  <style>
+    :root {
+      --bg: #10131c;
+      --panel: rgba(22, 28, 42, .88);
+      --gold: #f4c76b;
+      --gold-light: #ffe7a8;
+      --text: #f4f0e7;
+      --muted: #b9c0ce;
+      --line: rgba(244, 199, 107, .24);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 50% -15%, rgba(104, 80, 143, .35), transparent 52%),
+        radial-gradient(ellipse at 90% 55%, rgba(47, 100, 103, .14), transparent 36%),
+        var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .stars {
+      position: fixed; inset: 0; pointer-events: none; opacity: .38;
+      background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#f4c76b 1px, transparent 1px);
+      background-size: 83px 83px, 127px 127px;
+      background-position: 12px 18px, 46px 61px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    .wrap { width: min(100% - 32px, 900px); margin: 0 auto; position: relative; }
+    header { padding: 28px 0 12px; display: flex; align-items: center; justify-content: center; }
+    .brand { font-size: .82rem; letter-spacing: .28em; color: var(--gold); text-transform: uppercase; font-weight: 800; }
+    .hero { text-align: center; padding: 68px 0 56px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .22em; font-size: .75rem; font-weight: 800; }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 10vw, 6.3rem);
+      line-height: .98; margin: 18px 0 20px;
+      letter-spacing: -.045em;
+      text-shadow: 0 6px 36px rgba(244, 199, 107, .16);
+    }
+    h1 span { color: var(--gold); }
+    .intro { max-width: 580px; margin: 0 auto; color: var(--muted); font-size: 1.08rem; }
+    .download {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      margin-top: 30px; padding: 15px 25px; min-height: 56px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #211a0e; text-decoration: none; font-weight: 900;
+      border-radius: 9px; box-shadow: 0 8px 28px rgba(244, 199, 107, .19);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .download:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(244, 199, 107, .28); }
+    .hint { color: #8e97a8; font-size: .82rem; margin-top: 12px; }
+    .divider { display: flex; align-items: center; gap: 14px; color: var(--gold); margin: 0 0 24px; }
+    .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 5vw, 2.5rem); text-align: center; margin: 0 0 28px; }
+    .steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .step {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+      padding: 23px; backdrop-filter: blur(8px);
+    }
+    .number {
+      display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px;
+      color: #211a0e; background: var(--gold); font-weight: 900; margin-bottom: 15px;
+    }
+    .step h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .step p { margin: 0; color: var(--muted); }
+    .save-name { color: var(--gold-light); font-weight: 800; }
+    .closing {
+      margin: 56px 0 36px; padding: 28px clamp(20px, 5vw, 42px);
+      border: 1px solid var(--line); border-radius: 16px;
+      background: linear-gradient(135deg, rgba(244, 199, 107, .09), rgba(22, 28, 42, .78));
+      text-align: center;
+    }
+    .closing .mark { color: var(--gold); font-size: 1.8rem; }
+    .closing p { margin: 10px 0 0; color: #e7e1d5; }
+    .closing .final-line { font-family: Georgia, "Times New Roman", serif; color: var(--gold-light); font-size: 1.16rem; margin-top: 18px; }
+    footer { text-align: center; padding: 0 0 28px; color: #788193; font-size: .8rem; }
+    @media (max-width: 640px) {
+      .hero { padding: 50px 0 44px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { padding: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .download { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <header><div class="brand">✦ Um mundo à sua espera ✦</div></header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Prepare-se, aventureiro</div>
+        <h1>Ttrito<span>World</span></h1>
+        <p class="intro">Uma aventura em formato RPG espera por você. Baixe o jogo, prepare seu caminho e comece sua jornada!</p>
+        <a class="download" href="https://www.mediafire.com/file/uavzu8wbcwcgdkt/TtritoWorld.ex/file" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">⬇</span> BAIXAR TTRITOWORLD
+        </a>
+        <div class="hint">O botão abrirá a página do jogo no MediaFire.</div>
+      </section>
+
+      <section aria-labelledby="guide-title">
+        <div class="divider"><span>✧</span></div>
+        <h2 id="guide-title">Como baixar e começar</h2>
+        <div class="steps">
+          <article class="step">
+            <div class="number">01</div>
+            <h3>Baixe o jogo</h3>
+            <p>Acesse o link pelo botão acima e faça o download do TtritoWorld.</p>
+          </article>
+          <article class="step">
+            <div class="number">02</div>
+            <h3>Crie a pasta do jogo</h3>
+            <p>Depois de baixar, recomendo criar uma pasta com o nome <span class="save-name">TtritoWorld</span> e iniciar o jogo pela primeira vez dentro dela.</p>
+          </article>
+          <article class="step">
+            <div class="number">03</div>
+            <h3>Guarde seus saves</h3>
+            <p>Ao iniciar o jogo pela primeira vez, ele cria uma pasta chamada <span class="save-name">saves</span>. É nela que seu progresso fica salvo, então mantenha essa pasta junto do jogo.</p>
+          </article>
+          <article class="step">
+            <div class="number">04</div>
+            <h3>Prepare-se para jogar</h3>
+            <p>Depois que a pasta <span class="save-name">saves</span> for criada, você pode colocar o jogo na área de trabalho e aproveitar sua aventura!</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="mark" aria-hidden="true">✦</div>
+        <p>Espero que gostem e aproveitem esse jogo feito com muito carinho e dedicação. Esse jogo consiste basicamente em um RPG, espero que gostem.</p>
+        <p>Daqui a um tempo vem a atualização dele, então esperem ansiosos, aventureiros...</p>
+        <p class="final-line">Pois o desafio mais difícil sempre é o próximo...</p>
+      </section>
+    </main>
+
+    <footer>© TtritoWorld · Toda aventura começa com o primeiro passo.</footer>
+  </div>
+</body>
+</html>
